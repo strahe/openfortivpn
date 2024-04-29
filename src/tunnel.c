@@ -118,6 +118,10 @@ static int on_ppp_if_up(struct tunnel *tunnel)
 
 		if (ret != 0)
 			log_warn("Adding route table is incomplete. Please check route table.\n");
+	}else {
+	    int ret = ipv4_protect_tunnel_route(tunnel);
+	    if (ret != 0)
+            log_warn("Protect tunnel route is incomplete. Please check route table.\n");
 	}
 
 	if (tunnel->config->set_dns) {
